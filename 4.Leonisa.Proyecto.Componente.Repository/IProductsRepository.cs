@@ -12,13 +12,8 @@
 // <summary></summary>
 // ***********************************************************************
 using _3.Leonisa.Proyecto.Componente.Domain;
-using _4.Leonisa.Proyecto.Componente.Repository.Base;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using _4.Leonisa.Proyecto.Componente.Repository.Base;
 
 namespace _4.Leonisa.Proyecto.Componente.Repository
 {

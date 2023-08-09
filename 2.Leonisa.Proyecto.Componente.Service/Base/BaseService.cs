@@ -50,10 +50,10 @@ namespace _2.Leonisa.Proyecto.Componente.Service.Base
         /// <returns>Task.</returns>
         public virtual Task CreateAsync(TEntity entity, CancellationTokenSource token, string jwtToken)
         {
-            if(!token.IsCancellationRequested)
+            if (!token.IsCancellationRequested)
                 return Repository.CreateAsync(entity, token);
             else
-               throw new Exception("Error al ejecutar la peticion");
+                throw new Exception("Error al ejecutar la peticion");
 
         }
 

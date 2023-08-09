@@ -48,6 +48,7 @@ namespace _1.Leonisa.Proyecto.Componente.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddCustomSwaggerGen();
 
+            builder.Services.AddCustomHealthChecks(builder.Configuration);
             //=============================================================
             var app = builder.Build();
 
@@ -56,6 +57,7 @@ namespace _1.Leonisa.Proyecto.Componente.API
             {
                 app.AddCustomUseSwaggerUI();
             }
+            app.MapHealthChecks("/hc").AllowAnonymous();
 
             app.UseHttpsRedirection();
 

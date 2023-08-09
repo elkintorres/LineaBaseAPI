@@ -5,7 +5,6 @@ using _2.Leonisa.Proyecto.Componente.Service;
 using _3.Leonisa.Proyecto.Componente.Domain;
 
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _1.Leonisa.Proyecto.Componente.API.Controllers
@@ -22,7 +21,7 @@ namespace _1.Leonisa.Proyecto.Componente.API.Controllers
     [ControllerName("Products")]
     [ApiVersion("2.0")]
     [Route("api/v{version:apiVersion}/Products")]
-  
+
     public class ProductsV2Controller : ControllerBase
     {
         /// <summary>

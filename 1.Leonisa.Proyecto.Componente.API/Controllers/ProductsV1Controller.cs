@@ -19,7 +19,6 @@ using _3.Leonisa.Proyecto.Componente.Domain;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _1.Leonisa.Proyecto.Componente.API.Controllers
@@ -37,7 +36,7 @@ namespace _1.Leonisa.Proyecto.Componente.API.Controllers
     [ControllerName("Products")]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/Products")]
-    
+
     //[ApiExplorerSettings(GroupName = "V1")]
     public class ProductsV1Controller : ControllerBase
     {

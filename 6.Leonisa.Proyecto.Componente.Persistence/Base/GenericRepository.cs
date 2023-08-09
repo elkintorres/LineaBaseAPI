@@ -14,10 +14,8 @@
 using _4.Leonisa.Proyecto.Componente.Repository.Base;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.Extensions.Configuration;
 
-using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace _6.Leonisa.Proyecto.Componente.Persistence.Base

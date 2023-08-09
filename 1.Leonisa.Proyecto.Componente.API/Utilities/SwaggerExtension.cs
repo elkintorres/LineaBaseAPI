@@ -11,26 +11,31 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
+// Namespace que contiene la extensión Swagger
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace _1.Leonisa.Proyecto.Componente.API.Utilities
 {
     /// <summary>
-    /// Class SwaggerExtension.
+    /// Clase que define una extensión para configurar Swagger.
     /// </summary>
     public static class SwaggerExtension
     {
         /// <summary>
-        /// Adds the custom swagger gen.
+        /// Método que agrega la configuración personalizada para SwaggerGen.
         /// </summary>
-        /// <param name="services">The services.</param>
+        /// <param name="services">La colección de servicios de la aplicación.</param>
         public static void AddCustomSwaggerGen(this IServiceCollection services)
         {
+            // Agregar el generador de exploradores de puntos finales
             services.AddEndpointsApiExplorer();
+
+            // Configuración del generador de Swagger
             services.AddSwaggerGen(options =>
             {
+                // Definición de documentos Swagger para diferentes versiones de la API
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
@@ -43,8 +48,7 @@ namespace _1.Leonisa.Proyecto.Componente.API.Utilities
                     Title = new string("Swagger API REST ServiceName V2")
                 });
 
-                //options.DocInclusionPredicate((name, api) => true);
-
+                // Definición de la seguridad basada en JWT
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
@@ -55,6 +59,7 @@ namespace _1.Leonisa.Proyecto.Componente.API.Utilities
                     BearerFormat = "JWT"
                 });
 
+                // Requisito de seguridad para usar JWT en las operaciones
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -70,35 +75,41 @@ namespace _1.Leonisa.Proyecto.Componente.API.Utilities
                                 Type = ReferenceType.SecurityScheme,
                                 Id = "Bearer"
                             },
-                         },
+                        },
                         Array.Empty<string>()
-                     }
+                    }
                 });
 
+                // Incluir comentarios XML en la documentación Swagger
                 List<string> xmlFiles = Directory.GetFiles(AppContext.BaseDirectory, "*.xml", SearchOption.TopDirectoryOnly).ToList();
                 xmlFiles.ForEach(xmlFile => options.IncludeXmlComments(xmlFile));
             });
         }
 
         /// <summary>
-        /// Adds the custom use swagger UI.
+        /// Método que agrega la configuración personalizada para usar Swagger UI.
         /// </summary>
-        /// <param name="app">The application.</param>
+        /// <param name="app">La aplicación ASP.NET Core.</param>
         public static void AddCustomUseSwaggerUI(this WebApplication app)
         {
+            // Configuración para usar Swagger
             app.UseSwagger(options =>
             {
                 options.SerializeAsV2 = true;
             });
 
+            // Obteniendo el proveedor de descripciones de versión de API
             var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
+            // Configuración de Swagger UI
             app.UseSwaggerUI(c =>
             {
+                // Agregando endpoints Swagger para cada versión de la API
                 foreach (var GroupName in apiVersionDescriptionProvider.ApiVersionDescriptions.Reverse().Select(x => x.GroupName))
                 {
                     c.SwaggerEndpoint($"/swagger/{GroupName}/swagger.json", GroupName.ToUpperInvariant());
                 }
+                // Mostrar la duración de las solicitudes en Swagger UI
                 c.DisplayRequestDuration();
             });
         }
