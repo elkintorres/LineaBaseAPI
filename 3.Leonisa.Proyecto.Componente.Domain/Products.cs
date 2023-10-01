@@ -20,7 +20,7 @@ namespace _3.Leonisa.Proyecto.Componente.Domain
     /// <summary>
     /// Clase que representa la entidad "Products" en la base de datos.
     /// </summary>
-    public class Products: IValidatableObject
+    public class Products : IValidatableObject
     {
         /// <summary>
         /// Clave primaria de la entidad "Products".
@@ -34,7 +34,7 @@ namespace _3.Leonisa.Proyecto.Componente.Domain
         /// Nombre del producto.
         /// </summary>
         /// <value>The name of the product.</value>
-        [StringLength(maximumLength: 40, MinimumLength =3, ErrorMessage ="ProductName no puede tener mas de 40 caracteres")]
+        [StringLength(maximumLength: 40, MinimumLength = 3, ErrorMessage = "ProductName no puede tener mas de 40 caracteres")]
         public string ProductName { get; set; }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace _3.Leonisa.Proyecto.Componente.Domain
             List<ValidationResult> result = new();
 
             if (UnitPrice <= 0)
-                result.Add(new ValidationResult("Unit Price no pueder ser menor o igual a 0", new List<string>() { nameof(UnitPrice)}));
+                result.Add(new ValidationResult("Unit Price no pueder ser menor o igual a 0", new List<string>() { nameof(UnitPrice) }));
 
             return result;
         }

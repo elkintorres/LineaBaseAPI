@@ -30,6 +30,9 @@ namespace _1.Leonisa.Proyecto.Componente.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            //Load appsettings config
+            builder.Configuration.AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
 
             //Configure IoC (Services, Repositories, Gateway)
             builder.Services.ConfigureIoC();

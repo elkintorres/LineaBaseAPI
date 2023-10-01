@@ -1,6 +1,6 @@
 ﻿namespace _1.Leonisa.Proyecto.Componente.API.Utilities
 {
-    internal class JwtTokenConfig
+    public class JwtTokenConfig
     {
         public string Secret { get; set; }
         public string Issuer { get; set; }

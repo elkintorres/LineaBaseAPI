@@ -29,7 +29,7 @@ namespace _1.Leonisa.Proyecto.Componente.API.Controllers
     /// Implements the <see cref="ControllerBase" />
     /// </summary>
     /// <seealso cref="ControllerBase" />
-    [Authorize]
+    //[Authorize]
     [Produces("application/json")]
     [Consumes("application/json")]
     [ApiController]
@@ -85,7 +85,6 @@ namespace _1.Leonisa.Proyecto.Componente.API.Controllers
 
             if (!result.Any())
                 return NoContent();
-
 
             return Ok(result.FirstOrDefault());
         }
